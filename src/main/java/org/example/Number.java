@@ -37,4 +37,12 @@ public class Number {
     public int fromBinaryToDecimal() {
         return NumberConverter.binaryToDecimal(getSymbol());
     }
+
+    public String fromDecimalToOcta() {
+        return NumberConverter.decimalToOcta(getValue());
+    }
+
+    public int fromOctaToDecimal() {
+        return NumberConverter.octaToDecimal(getSymbol());
+    }
 }

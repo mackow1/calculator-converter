@@ -135,6 +135,15 @@ public class NumberConverter {
         }
         return Integer.parseInt(binary, 2);
     }
+
+    public static String decimalToOcta(int decimal) {
+        return "0";
+    }
+
+    public static int octaToDecimal(String octa) {
+        return 0;
+    }
+
     public static int toDecimal(String symbol) {
         return Integer.parseInt(symbol);
     }
