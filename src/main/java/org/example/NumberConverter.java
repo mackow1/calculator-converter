@@ -65,7 +65,64 @@ public class NumberConverter {
     }
 
     public static String decimalToRoman(int number) {
-        return "";
+        String symbol = String.valueOf(number);
+        StringBuilder decimal = new StringBuilder();
+
+        String[] symbolArray = symbol.split("");
+
+        int tempNumber = 0;
+        for (int i = symbolArray.length - 1; i >= 0; i--) {
+            tempNumber = Integer.parseInt(symbolArray[i]);
+            if (i == 3) {
+                switch (tempNumber) {
+                    case 1 -> decimal.insert(0, "I");
+                    case 2 -> decimal.insert(0, "II");
+                    case 3 -> decimal.insert(0, "III");
+                    case 4 -> decimal.insert(0, "IV");
+                    case 5 -> decimal.insert(0, "V");
+                    case 6 -> decimal.insert(0, "VI");
+                    case 7 -> decimal.insert(0, "VII");
+                    case 8 -> decimal.insert(0, "VIII");
+                    case 9 -> decimal.insert(0, "IX");
+                    default -> decimal.insert(0, "");
+                }
+            } else if (i == 2) {
+                switch (tempNumber) {
+                    case 1 -> decimal.insert(0, "X");
+                    case 2 -> decimal.insert(0, "XX");
+                    case 3 -> decimal.insert(0, "XXX");
+                    case 4 -> decimal.insert(0, "XL");
+                    case 5 -> decimal.insert(0, "L");
+                    case 6 -> decimal.insert(0, "LX");
+                    case 7 -> decimal.insert(0, "LXX");
+                    case 8 -> decimal.insert(0, "LXXX");
+                    case 9 -> decimal.insert(0, "XC");
+                    default -> decimal.insert(0, "");
+                }
+            } else if (i == 1) {
+                switch (tempNumber) {
+                    case 1 -> decimal.insert(0, "C");
+                    case 2 -> decimal.insert(0, "CC");
+                    case 3 -> decimal.insert(0, "CCC");
+                    case 4 -> decimal.insert(0, "CD");
+                    case 5 -> decimal.insert(0, "D");
+                    case 6 -> decimal.insert(0, "DC");
+                    case 7 -> decimal.insert(0, "DCC");
+                    case 8 -> decimal.insert(0, "DCCC");
+                    case 9 -> decimal.insert(0, "CM");
+                    default -> decimal.insert(0, "");
+                }
+            } else if (i == 0) {
+                switch (tempNumber) {
+                    case 1 -> decimal.insert(0, "M");
+                    case 2 -> decimal.insert(0, "MM");
+                    case 3 -> decimal.insert(0, "MMM");
+                    case 4 -> decimal.insert(0, "MMMM");
+                    default -> decimal.insert(0, "");
+                }
+            }
+        }
+        return decimal.toString();
     }
 
     public static int toDecimal(String symbol) {
