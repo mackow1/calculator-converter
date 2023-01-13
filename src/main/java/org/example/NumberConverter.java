@@ -137,7 +137,13 @@ public class NumberConverter {
     }
 
     public static String decimalToOcta(int decimal) {
-        return "0";
+        StringBuilder octa = new StringBuilder();
+        while (decimal != 0) {
+            int rest = decimal % 8;
+            decimal = decimal / 8;
+            octa.insert(0, rest);
+        }
+        return octa.toString();
     }
 
     public static int octaToDecimal(String octa) {
