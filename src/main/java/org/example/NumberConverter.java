@@ -147,7 +147,13 @@ public class NumberConverter {
     }
 
     public static int octaToDecimal(String octa) {
-        return 0;
+        int sum = 0;
+        int counter = 0;
+        for (int i = octa.length() - 1; i >= 0; i--) {
+            sum += Integer.parseInt(String.valueOf(octa.charAt(i))) * Math.pow(8, counter);
+            counter++;
+        }
+        return sum;
     }
 
     public static int toDecimal(String symbol) {
