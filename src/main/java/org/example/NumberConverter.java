@@ -129,6 +129,12 @@ public class NumberConverter {
         return "0b" + Integer.toBinaryString(value);
     }
 
+    public static int binaryToDecimal(String binary) {
+        if (binary.contains("0b")) {
+            binary = binary.substring(2);
+        }
+        return Integer.parseInt(binary, 2);
+    }
     public static int toDecimal(String symbol) {
         return Integer.parseInt(symbol);
     }

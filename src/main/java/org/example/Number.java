@@ -33,4 +33,8 @@ public class Number {
     public String fromDecimalToBinary() {
         return NumberConverter.decimalToBinary(getValue());
     }
+
+    public int fromBinaryToDecimal() {
+        return NumberConverter.binaryToDecimal(getSymbol());
+    }
 }
