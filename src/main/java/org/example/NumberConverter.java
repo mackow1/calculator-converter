@@ -126,7 +126,7 @@ public class NumberConverter {
     }
 
     public static String decimalToBinary(int value) {
-        return "01010101";
+        return "0b" + Integer.toBinaryString(value);
     }
 
     public static int toDecimal(String symbol) {
