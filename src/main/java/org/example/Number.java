@@ -43,6 +43,7 @@ public class Number {
     }
 
     public int fromOctaToDecimal() {
-        return NumberConverter.octaToDecimal(getValue());
+        return NumberConverter.octaToDecimal(getSymbol());
     }
+
 }
