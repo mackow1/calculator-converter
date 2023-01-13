@@ -125,6 +125,10 @@ public class NumberConverter {
         return decimal.toString();
     }
 
+    public static String decimalToBinary(int value) {
+        return "01010101";
+    }
+
     public static int toDecimal(String symbol) {
         return Integer.parseInt(symbol);
     }

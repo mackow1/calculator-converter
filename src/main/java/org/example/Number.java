@@ -29,4 +29,8 @@ public class Number {
     public int fromRomanToDecimal() {
         return NumberConverter.romanToDecimal(getSymbol());
     }
+
+    public String fromDecimalToBinary() {
+        return NumberConverter.decimalToBinary(getValue());
+    }
 }
