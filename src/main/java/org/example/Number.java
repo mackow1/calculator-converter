@@ -7,7 +7,17 @@ public class Number {
     public Number(String symbol) {
         this.symbol = symbol;
         // możemy mieć system dziesietny(10), osemkowy(0o7), szesnastkowy(0x1f), binarny(0b1101) i rzymski(LXII),
-        this.value = NumberConverter.toDecimal(symbol);
+        if (symbol.contains("0o")) {
+            this.value = this.fromOctaToDecimal();
+        } else if (symbol.contains("0x")) {
+            this.value = this.fromHexToDecimal();
+        } else if (symbol.contains("0b")) {
+            this.value = this.fromBinaryToDecimal();
+        } else if (symbol.matches("[MDCLXVI]*")) {
+            this.value = this.fromRomanToDecimal();
+        } else if (symbol.matches("[0-9]*")) {
+            this.value = Integer.parseInt(symbol);
+        }
     }
 
     public String getSymbol() {
@@ -16,10 +26,6 @@ public class Number {
 
     public int getValue() {
         return value;
-    }
-
-    public int toDecimal() {
-        return getValue();
     }
 
     public String fromDecimalToRoman() {
