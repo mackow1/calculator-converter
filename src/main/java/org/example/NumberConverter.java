@@ -198,7 +198,16 @@ public class NumberConverter {
     }
 
     public static int hexToDecimal(String hex) {
-        return 0;
+        String quota = "0123456789ABCDEF";
+        int result = 0;
+        int power = 1;
+
+        for (int i = hex.length() - 1; i >= 0; i--) {
+            int tempIndex = quota.indexOf(hex.charAt(i));
+            result += tempIndex * power;
+            power *= 16;
+        }
+        return result;
     }
 
     public static int toDecimal(String symbol) {
