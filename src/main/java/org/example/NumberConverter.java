@@ -156,6 +156,14 @@ public class NumberConverter {
         return sum;
     }
 
+    public static String decimalToHex(int decimal) {
+        return "0";
+    }
+
+    public static int hexToDecimal(String hex) {
+        return 0;
+    }
+
     public static int toDecimal(String symbol) {
         return Integer.parseInt(symbol);
     }

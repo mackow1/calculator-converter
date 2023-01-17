@@ -46,4 +46,11 @@ public class Number {
         return NumberConverter.octaToDecimal(getSymbol());
     }
 
+    public String fromDecimalToHex() {
+        return NumberConverter.decimalToHex(getValue());
+    }
+
+    public int fromHexToDecimal() {
+        return NumberConverter.hexToDecimal(getSymbol());
+    }
 }
