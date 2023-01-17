@@ -147,6 +147,7 @@ public class NumberConverter {
     }
 
     public static int octaToDecimal(String octa) {
+        octa = octa.substring(2);
         int sum = 0;
         int counter = 0;
         for (int i = octa.length() - 1; i >= 0; i--) {
@@ -198,6 +199,7 @@ public class NumberConverter {
     }
 
     public static int hexToDecimal(String hex) {
+        hex = hex.substring(2);
         String quota = "0123456789ABCDEF";
         int result = 0;
         int power = 1;
