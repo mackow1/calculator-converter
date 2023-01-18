@@ -14,10 +14,10 @@ public class Main {
         try {
             System.out.print("Enter first number: ");
             symbolA = scanner.next();
-            System.out.print("Enter second number: ");
-            symbolB = scanner.next();
             System.out.print("Enter operator: ");
             operator = scanner.next();
+            System.out.print("Enter second number: ");
+            symbolB = scanner.next();
             System.out.print("Enter system you want to display(hex, oct, dec, rom, bin): ");
             numericSystem = scanner.next().toLowerCase();
         } catch (InputMismatchException e) {
