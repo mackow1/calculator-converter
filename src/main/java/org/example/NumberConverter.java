@@ -73,7 +73,7 @@ public class NumberConverter {
         int tempNumber = 0;
         for (int i = symbolArray.length - 1; i >= 0; i--) {
             tempNumber = Integer.parseInt(symbolArray[i]);
-            if (i == 3) {
+            if (symbolArray.length - i == 1) {
                 switch (tempNumber) {
                     case 1 -> decimal.insert(0, "I");
                     case 2 -> decimal.insert(0, "II");
@@ -86,7 +86,7 @@ public class NumberConverter {
                     case 9 -> decimal.insert(0, "IX");
                     default -> decimal.insert(0, "");
                 }
-            } else if (i == 2) {
+            } else if (symbolArray.length - i == 2) {
                 switch (tempNumber) {
                     case 1 -> decimal.insert(0, "X");
                     case 2 -> decimal.insert(0, "XX");
@@ -99,7 +99,7 @@ public class NumberConverter {
                     case 9 -> decimal.insert(0, "XC");
                     default -> decimal.insert(0, "");
                 }
-            } else if (i == 1) {
+            } else if (symbolArray.length - i == 3) {
                 switch (tempNumber) {
                     case 1 -> decimal.insert(0, "C");
                     case 2 -> decimal.insert(0, "CC");
@@ -112,7 +112,7 @@ public class NumberConverter {
                     case 9 -> decimal.insert(0, "CM");
                     default -> decimal.insert(0, "");
                 }
-            } else if (i == 0) {
+            } else if (symbolArray.length - i == 4) {
                 switch (tempNumber) {
                     case 1 -> decimal.insert(0, "M");
                     case 2 -> decimal.insert(0, "MM");
