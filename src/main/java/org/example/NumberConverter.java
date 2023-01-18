@@ -126,7 +126,7 @@ public class NumberConverter {
     }
 
     public static String decimalToBinary(int value) {
-        return "0b" + Integer.toBinaryString(value);
+        return Integer.toBinaryString(value);
     }
 
     public static int binaryToDecimal(String binary) {
@@ -210,9 +210,5 @@ public class NumberConverter {
             power *= 16;
         }
         return result;
-    }
-
-    public static int toDecimal(String symbol) {
-        return Integer.parseInt(symbol);
     }
 }
