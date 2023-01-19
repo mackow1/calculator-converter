@@ -131,7 +131,7 @@ public class NumberConverter {
         return decimalToPositionalSystem(value, 2);
     }
 
-    public static String decimalToPositionalSystem(int value, int base) {
+    private static String decimalToPositionalSystem(int value, int base) {
         String result = "";
         while (value != 0) {
             int index = value % base;
@@ -141,7 +141,7 @@ public class NumberConverter {
         return result;
     }
 
-    public static int positionalSystemToDecimal(String value, int base) {
+    private static int positionalSystemToDecimal(String value, int base) {
         int result = 0;
         value = value.substring(2);
         for (int i = value.length() - 1, j = 0; i >= 0; i--, j++) {
@@ -244,16 +244,4 @@ public class NumberConverter {
         }
         return result;
     }
-
-    /*
-    bin = 0b1101010
-    dec = 2^1 + 2^3 + 2^5 + 2^6
-    cot = 0o152
-    dec = 2*8^0 + 5*8^1 + 1*8^2
-    hex = 0x6A
-    dec = 10*16^0 + 6*16^1
-    1100100
-0m5GMN5F
-287590990
-    */
 }
