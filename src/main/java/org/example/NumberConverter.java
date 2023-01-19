@@ -2,6 +2,8 @@ package org.example;
 
 public class NumberConverter {
 
+    private static final String ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
     public static int romanToDecimal(String symbol) {
         String tempSubstring = symbol;
         String ms = null;
@@ -126,14 +128,45 @@ public class NumberConverter {
     }
 
     public static String decimalToBinary(int value) {
-        return Integer.toBinaryString(value);
+        return decimalToPositionalSystem(value, 2);
+    }
+
+    public static String decimalToPositionalSystem(int value, int base) {
+        String result = "";
+        while (value != 0) {
+            int index = value % base;
+            result = NumberConverter.ALPHABET.charAt(index) + result;
+            value /= base;
+        }
+        return result;
+    }
+
+    public static int positionalSystemToDecimal(String value, int base) {
+        int result = 0;
+        value = value.substring(2);
+        for (int i = value.length() - 1, j = 0; i >= 0; i--, j++) {
+            int index = NumberConverter.ALPHABET.indexOf(value.charAt(i));
+            result += index * Math.pow(base, j);
+        }
+        return result;
+    }
+
+    public static int maciekToDecimal(String value) {
+
+        return positionalSystemToDecimal(value, 35);
+    }
+
+    public static String decimalToMaciek(int value) {
+
+        return decimalToPositionalSystem(value, 35);
     }
 
     public static int binaryToDecimal(String binary) {
-        if (binary.contains("0b")) {
-            binary = binary.substring(2);
-        }
-        return Integer.parseInt(binary, 2);
+        return positionalSystemToDecimal(binary, 2);
+//        if (binary.contains("0b")) {
+//            binary = binary.substring(2);
+//        }
+//        return Integer.parseInt(binary, 2);
     }
 
     public static String decimalToOcta(int decimal) {
@@ -211,4 +244,16 @@ public class NumberConverter {
         }
         return result;
     }
+
+    /*
+    bin = 0b1101010
+    dec = 2^1 + 2^3 + 2^5 + 2^6
+    cot = 0o152
+    dec = 2*8^0 + 5*8^1 + 1*8^2
+    hex = 0x6A
+    dec = 10*16^0 + 6*16^1
+    1100100
+0m5GMN5F
+287590990
+    */
 }

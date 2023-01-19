@@ -17,6 +17,8 @@ public class Number {
             this.value = this.fromRomanToDecimal();
         } else if (symbol.matches("[0-9]*")) {
             this.value = Integer.parseInt(symbol);
+        } else if (symbol.startsWith("0m")) {
+            this.value = this.fromMacToDecimal();
         }
     }
 
@@ -58,5 +60,13 @@ public class Number {
 
     public int fromHexToDecimal() {
         return NumberConverter.hexToDecimal(getSymbol());
+    }
+
+    public int fromMacToDecimal() {
+        return NumberConverter.maciekToDecimal(getSymbol());
+    }
+
+    public String fromDecimalToMac() {
+        return NumberConverter.decimalToMaciek(getValue());
     }
 }

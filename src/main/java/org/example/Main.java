@@ -18,7 +18,7 @@ public class Main {
             operator = scanner.next();
             System.out.print("Enter second number: ");
             symbolB = scanner.next();
-            System.out.print("Enter system you want to display(hex, oct, dec, rom, bin): ");
+            System.out.print("Enter system you want to display(hex, oct, dec, rom, bin, mac): ");
             numericSystem = scanner.next().toLowerCase();
         } catch (InputMismatchException e) {
             System.out.println("Conversion error");
@@ -39,6 +39,7 @@ public class Main {
                 case "dec" -> System.out.println(c.getValue());
                 case "rom" -> System.out.println(c.fromDecimalToRoman());
                 case "bin" -> System.out.println("0b" + c.fromDecimalToBinary());
+                case "mac" -> System.out.println("0m" + c.fromDecimalToMac());
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
