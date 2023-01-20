@@ -1,31 +1,22 @@
 package org.example;
 
+import java.net.DatagramSocket;
+import java.net.SocketException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        String symbolA = null;
-        String symbolB = null;
-        String operator = null;
-        String numericSystem = null;
+    public static void main(String[] args) throws SocketException {
+        DatagramSocket datagramSocket = new DatagramSocket(12345);
+        Server server = new Server(datagramSocket);
+        String[] equation = server.receiveData().toLowerCase().split(" ");
 
-        try {
-            System.out.print("Enter first number: ");
-            symbolA = scanner.next();
-            System.out.print("Enter operator: ");
-            operator = scanner.next();
-            System.out.print("Enter second number: ");
-            symbolB = scanner.next();
-            System.out.print("Enter system you want to display(hex, oct, dec, rom, bin, mac): ");
-            numericSystem = scanner.next().toLowerCase();
-        } catch (InputMismatchException e) {
-            System.out.println("Conversion error");
-        } catch (Exception e) {
-            System.out.println("Something is wrong");
-        } finally {
-            scanner.close();
+        String symbolA = equation[0];
+        String operator = equation[1];
+        String symbolB = equation[2];
+        String numericSystem = "dec";
+        if (equation.length == 4) {
+            numericSystem = equation[3];
         }
 
         Number a = new Number(symbolA);
