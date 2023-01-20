@@ -152,96 +152,30 @@ public class NumberConverter {
     }
 
     public static int maciekToDecimal(String value) {
-
         return positionalSystemToDecimal(value, 35);
     }
 
     public static String decimalToMaciek(int value) {
-
         return decimalToPositionalSystem(value, 35);
     }
 
     public static int binaryToDecimal(String binary) {
         return positionalSystemToDecimal(binary, 2);
-//        if (binary.contains("0b")) {
-//            binary = binary.substring(2);
-//        }
-//        return Integer.parseInt(binary, 2);
     }
 
     public static String decimalToOcta(int decimal) {
-        StringBuilder octa = new StringBuilder();
-        while (decimal != 0) {
-            int rest = decimal % 8;
-            decimal = decimal / 8;
-            octa.insert(0, rest);
-        }
-        return octa.toString();
+        return decimalToPositionalSystem(decimal, 8);
     }
 
     public static int octaToDecimal(String octa) {
-        octa = octa.substring(2);
-        int sum = 0;
-        int counter = 0;
-        for (int i = octa.length() - 1; i >= 0; i--) {
-            sum += Integer.parseInt(String.valueOf(octa.charAt(i))) * Math.pow(8, counter);
-            counter++;
-        }
-        return sum;
+        return positionalSystemToDecimal(octa, 8);
     }
 
     public static String decimalToHex(int decimal) {
-        String hexNumber = "";
-        while (decimal != 0) {
-            if (decimal >= 4096) {
-                hexNumber += decimalToHexSwitch(decimal / 4096);
-                decimal = decimal % 4096;
-            } else if (decimal >= 256) {
-                hexNumber += decimalToHexSwitch(decimal / 256);
-                decimal = decimal % 256;
-            } else if (decimal >= 16) {
-                hexNumber += decimalToHexSwitch(decimal / 16);
-                decimal = decimal % 16;
-            } else if (decimal >= 1) {
-                hexNumber += decimalToHexSwitch(decimal);
-                decimal = 0;
-            }
-        }
-        return hexNumber;
-    }
-
-    private static String decimalToHexSwitch(int number) {
-        return switch (number) {
-            case 1 -> "1";
-            case 2 -> "2";
-            case 3 -> "3";
-            case 4 -> "4";
-            case 5 -> "5";
-            case 6 -> "6";
-            case 7 -> "7";
-            case 8 -> "8";
-            case 9 -> "9";
-            case 10 -> "A";
-            case 11 -> "B";
-            case 12 -> "C";
-            case 13 -> "D";
-            case 14 -> "E";
-            case 15 -> "F";
-            default -> "";
-        };
+        return decimalToPositionalSystem(decimal, 16);
     }
 
     public static int hexToDecimal(String hex) {
-        hex = hex.substring(2);
-        String quota = "0123456789ABCDEF";
-        int result = 0;
-        int power = 1;
-
-        for (int i = hex.length() - 1; i >= 0; i--) {
-            int tempIndex = quota.indexOf(hex.charAt(i));
-            result += tempIndex * power;
-            power *= 16;
-        }
-        return result;
+        return positionalSystemToDecimal(hex, 16);
     }
 }
