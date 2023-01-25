@@ -15,24 +15,30 @@ public class NumberConverter {
                     } else {
                         sum += 1;
                     }
+                    break;
                 case 'V':
                     sum += 5;
+                    break;
                 case 'X':
                     if (symbol.charAt(i + 1) == 'L' || symbol.charAt(i + 1) == 'C') {
                         sum -= 10;
                     } else {
                         sum += 10;
                     }
+                    break;
                 case 'L':
                     sum += 50;
+                    break;
                 case 'C':
                     if (symbol.charAt(i + 1) == 'M' || symbol.charAt(i + 1) == 'D') {
                         sum -= 100;
                     } else {
                         sum += 100;
                     }
+                    break;
                 case 'M':
                     sum += 1000;
+                    break;
             }
         }
         return sum;
