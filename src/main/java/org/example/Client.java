@@ -1,34 +1,52 @@
 package org.example;
 
 import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
+import java.net.*;
 import java.util.Scanner;
 
 public class Client {
+    public static void main(String[] args) {
 
-    private DatagramSocket datagramSocket;
-    private InetAddress inetAddress;
-    private byte[] buffer;
+        try {
+            InetAddress address = InetAddress.getLocalHost();
+            DatagramSocket socket = new DatagramSocket();
 
-    public Client(DatagramSocket datagramSocket, InetAddress inetAddress) {
-        this.datagramSocket = datagramSocket;
-        this.inetAddress = inetAddress;
+            while (true) {
+                sendRequestToTheServer(socket,address);
+                receiveResponseFromServer(socket);
+                enterDataToSendToTheServer(socket, address);
+                receiveResponseFromServer(socket);
+            }
+        } catch (SocketTimeoutException ex) {
+            System.out.println("Timeout error: " + ex.getMessage());
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            System.out.println("Client error: " + ex.getMessage());
+            ex.printStackTrace();
+        }
     }
 
-    public void sendDataAndReceive() {
-        Scanner scanner = new Scanner(System.in);
-        try {
-            String message = scanner.nextLine();
-            buffer = message.getBytes();
-            DatagramPacket datagramPacket = new DatagramPacket(buffer, buffer.length, inetAddress, 12345);
-            datagramSocket.send(datagramPacket);
-            datagramSocket.receive(datagramPacket);
-            String messageFromServer = new String(datagramPacket.getData(), 0, datagramPacket.getLength());
-            System.out.println("The result is: " + messageFromServer);
-        } catch (IOException e) {
-            e.printStackTrace();
+    private static void sendRequestToTheServer(DatagramSocket socket, InetAddress address) throws IOException {
+        DatagramPacket request = new DatagramPacket(new byte[1], 1, address, 12345);
+        socket.send(request);
+    }
+
+    private static void receiveResponseFromServer(DatagramSocket socket) throws IOException {
+        byte[] buffer = new byte[256];
+        DatagramPacket response = new DatagramPacket(buffer, buffer.length);
+        socket.receive(response);
+
+        String message = new String(buffer, 0, response.getLength());
+
+        System.out.println(message);
+    }
+
+    private static void enterDataToSendToTheServer(DatagramSocket socket, InetAddress address) throws IOException {
+        try (Scanner scanner = new Scanner(System.in)) {
+            byte[] buffer =scanner.nextLine().
+                    getBytes();
+            DatagramPacket messageEquation = new DatagramPacket(buffer, buffer.length, address, 12345);
+            socket.send(messageEquation);
         }
     }
 }
