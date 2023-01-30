@@ -45,62 +45,58 @@ public class NumberConverter {
     }
 
     public static String decimalToRoman(int number) {
-        String symbol = String.valueOf(number);
-        StringBuilder decimal = new StringBuilder();
-
-        String[] symbolArray = symbol.split("");
-
-        int tempNumber = 0;
-        for (int i = symbolArray.length - 1; i >= 0; i--) {
-            tempNumber = Integer.parseInt(symbolArray[i]);
-            if (symbolArray.length - i == 1) {
-                switch (tempNumber) {
-                    case 1 -> decimal.insert(0, "I");
-                    case 2 -> decimal.insert(0, "II");
-                    case 3 -> decimal.insert(0, "III");
-                    case 4 -> decimal.insert(0, "IV");
-                    case 5 -> decimal.insert(0, "V");
-                    case 6 -> decimal.insert(0, "VI");
-                    case 7 -> decimal.insert(0, "VII");
-                    case 8 -> decimal.insert(0, "VIII");
-                    case 9 -> decimal.insert(0, "IX");
-                    default -> decimal.insert(0, "");
-                }
-            } else if (symbolArray.length - i == 2) {
-                switch (tempNumber) {
-                    case 1 -> decimal.insert(0, "X");
-                    case 2 -> decimal.insert(0, "XX");
-                    case 3 -> decimal.insert(0, "XXX");
-                    case 4 -> decimal.insert(0, "XL");
-                    case 5 -> decimal.insert(0, "L");
-                    case 6 -> decimal.insert(0, "LX");
-                    case 7 -> decimal.insert(0, "LXX");
-                    case 8 -> decimal.insert(0, "LXXX");
-                    case 9 -> decimal.insert(0, "XC");
-                    default -> decimal.insert(0, "");
-                }
-            } else if (symbolArray.length - i == 3) {
-                switch (tempNumber) {
-                    case 1 -> decimal.insert(0, "C");
-                    case 2 -> decimal.insert(0, "CC");
-                    case 3 -> decimal.insert(0, "CCC");
-                    case 4 -> decimal.insert(0, "CD");
-                    case 5 -> decimal.insert(0, "D");
-                    case 6 -> decimal.insert(0, "DC");
-                    case 7 -> decimal.insert(0, "DCC");
-                    case 8 -> decimal.insert(0, "DCCC");
-                    case 9 -> decimal.insert(0, "CM");
-                    default -> decimal.insert(0, "");
-                }
-            } else if (symbolArray.length - i == 4) {
-                switch (tempNumber) {
-                    case 1 -> decimal.insert(0, "M");
-                    case 2 -> decimal.insert(0, "MM");
-                    case 3 -> decimal.insert(0, "MMM");
-                    case 4 -> decimal.insert(0, "MMMM");
-                    default -> decimal.insert(0, "");
-                }
-            }
+        String decimal = "";
+        while (number >= 1000) {
+            decimal += "M";
+            number -= 1000;
+        }
+        if (number >= 900) {
+            decimal += "CM";
+            number -= 900;
+        }
+        if (number >= 500) {
+            decimal += "D";
+            number -= 500;
+        }
+        if (number >= 400) {
+            decimal += "CD";
+            number -= 400;
+        }
+        while (number >= 100) {
+            decimal += "C";
+            number -= 100;
+        }
+        if (number >= 90) {
+            decimal += "XC";
+            number -= 90;
+        }
+        if (number >= 50) {
+            decimal += "L";
+            number -= 50;
+        }
+        if (number >= 40) {
+            decimal += "XL";
+            number -= 40;
+        }
+        while (number >= 10) {
+            decimal += "X";
+            number -= 10;
+        }
+        if (number == 9) {
+            decimal += "IX";
+            number -= 9;
+        }
+        if (number >= 5) {
+            decimal += "V";
+            number -= 5;
+        }
+        if (number == 4) {
+            decimal += "IV";
+            number -= 4;
+        }
+        while (number >= 1) {
+            decimal += "I";
+            number -= 1;
         }
         return decimal.toString();
     }
